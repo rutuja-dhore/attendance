@@ -17,6 +17,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 
 import com.enterprise.attendance.model.Attendance;
+import com.enterprise.attendance.model.Vendor;
 
 @Entity
 public class User {
@@ -43,6 +44,10 @@ public class User {
 
 	@OneToMany(mappedBy = "user", cascade=CascadeType.ALL)
 	private List<Attendance> attendance;
+
+	@ManyToMany(cascade = CascadeType.ALL)
+	@JoinTable(name = "vendor_users", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "vendor_id", referencedColumnName = "id"))
+	private Collection<Vendor> vendorUsers = new ArrayList<>();
 
 	public User() {
 	}
@@ -103,4 +108,19 @@ public class User {
 		this.mobileNumber = mobileNumber;
 	}
 
+	public List<Attendance> getAttendance() {
+		return attendance;
+	}
+
+	public void setAttendance(List<Attendance> attendance) {
+		this.attendance = attendance;
+	}
+
+	public Collection<Vendor> getVendorUsers() {
+		return vendorUsers;
+	}
+
+	public void setVendorUsers(Collection<Vendor> vendorUsers) {
+		this.vendorUsers = vendorUsers;
+	}
 }

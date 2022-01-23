@@ -3,6 +3,8 @@ package com.enterprise.attendance.security.dto;
 //import javax.validation.constraints.NotNull;
 //import javax.validation.constraints.Size;
 
+import java.util.List;
+
 public class UserInputDTO {
 
 //	@Size(min = 1, message = "{Size.userDto.firstName}")
@@ -15,6 +17,8 @@ public class UserInputDTO {
 	private String password;
 
 	private String mobileNumber;
+
+	private List<Integer> vendors;
 
 	public String getFirstName() {
 		return firstName;
@@ -48,4 +52,11 @@ public class UserInputDTO {
 		this.mobileNumber = mobileNumber;
 	}
 
+	public List<Integer> getVendors() {
+		return vendors;
+	}
+
+	public void setVendors(List<Integer> vendors) {
+		this.vendors = vendors;
+	}
 }

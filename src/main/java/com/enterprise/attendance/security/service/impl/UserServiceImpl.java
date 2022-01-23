@@ -2,6 +2,10 @@ package com.enterprise.attendance.security.service.impl;
 
 import java.util.*;
 
+import com.enterprise.attendance.dao.VendorDAO;
+import com.enterprise.attendance.dto.output.VendorOutputDTO;
+import com.enterprise.attendance.model.Vendor;
+import com.enterprise.attendance.service.VendorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -29,6 +33,9 @@ public class UserServiceImpl implements UserService {
 
 	@Autowired
 	private PrivilegeRepository privilegeRepository;
+
+	@Autowired
+	private VendorService vendorService;
 
 	@Override
 	public UserDto createAdmin(UserInputDTO userInputDTO) {
@@ -77,6 +84,21 @@ public class UserServiceImpl implements UserService {
 		user.setRoles(Arrays.asList(userRole));
 		user.setEnabled(true);
 		user.setMobileNumber(userInputDTO.getMobileNumber());
+
+		List<Integer> vendorIds = userInputDTO.getVendors();
+		if(!vendorIds.isEmpty()) {
+			List<Vendor> vendors = new ArrayList<>();
+
+			for (Integer vendorId : vendorIds) {
+				VendorOutputDTO vendorOutputDTO= vendorService.retrieveById(vendorId);
+
+				Vendor vendor = new Vendor();
+				vendor.setName(vendorOutputDTO.getName());
+
+				vendors.add(vendor);
+		}
+		user.setVendorUsers(vendors);
+		}
 		user = userRepository.save(user);
 		return createResponse(user);
 	}
