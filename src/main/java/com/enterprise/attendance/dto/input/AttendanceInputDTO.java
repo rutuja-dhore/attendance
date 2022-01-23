@@ -21,6 +21,10 @@ public class AttendanceInputDTO {
 
 	private String mobileNumber;
 
+	private String vendorName;
+
+	private String comment;
+
 	public String getVanNumber() {
 		return vanNumber;
 	}
@@ -85,4 +89,19 @@ public class AttendanceInputDTO {
 		this.mobileNumber = mobileNumber;
 	}
 
+	public String getVendorName() {
+		return vendorName;
+	}
+
+	public void setVendorName(String vendorName) {
+		this.vendorName = vendorName;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 }

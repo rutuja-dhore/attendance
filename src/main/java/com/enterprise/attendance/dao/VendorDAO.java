@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 
 public interface VendorDAO extends JpaRepository<Vendor, Integer> {
 
-	Van findByName(String name);
+	Vendor findByName(String name);
 
 }

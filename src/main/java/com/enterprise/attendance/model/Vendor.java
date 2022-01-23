@@ -20,6 +20,9 @@ public class Vendor {
 	@ManyToMany(mappedBy = "vendorUsers")
 	private Collection<User> users =  new ArrayList<>();
 
+	@OneToOne(mappedBy = "vendor")
+	private Attendance attendance;
+
 	public Integer getId() {
 		return id;
 	}

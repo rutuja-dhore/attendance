@@ -5,7 +5,9 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import com.enterprise.attendance.dao.VendorDAO;
 import com.enterprise.attendance.dto.output.VanOutputDTO;
+import com.enterprise.attendance.model.Vendor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -42,6 +44,8 @@ public class AttendanceServiceImpl implements AttendanceService {
 	@Autowired
 	private UserRepository userDAO;
 
+	@Autowired
+	private VendorDAO vendorDAO;
 	@Override
 	public AttendanceOutputDTO create(AttendanceInputDTO attendanceInputDTO) {
 		Attendance attendance = new Attendance();
@@ -57,6 +61,9 @@ public class AttendanceServiceImpl implements AttendanceService {
 		attendance.setDisel(attendanceInputDTO.getDisel());
 		User user = userDAO.findByMobileNumber(attendanceInputDTO.getMobileNumber());
 		attendance.setUser(user);
+		attendance.setComment(attendance.getComment());
+		Vendor vendor = vendorDAO.findByName(attendanceInputDTO.getVendorName());
+		attendance.setVendor(vendor);
 		attendance = attendanceDAO.save(attendance);
 		return createResponseDTO(attendance);
 	}
@@ -147,9 +154,17 @@ public class AttendanceServiceImpl implements AttendanceService {
 		outputDTO.setLogDate(attendance.getLogDate());
 		outputDTO.setUserOutupDTO(createUserResponseDTO(attendance.getUser()));
 		outputDTO.setTotalKm(attendance.getTotalKm());
+		outputDTO.setComment(attendance.getComment());
+		outputDTO.setVendorOutputDTO(createVendorResponseDTO(attendance.getVendor()));
 		return outputDTO;
 	}
 
+	private VendorOutputDTO createVendorResponseDTO(Vendor vendor) {
+		VendorOutputDTO outputDTO = new VendorOutputDTO();
+		outputDTO.setId(vendor.getId());
+		outputDTO.setName(vendor.getName());
+		return outputDTO;
+	}
 	private VanOutputDTO createVanResponseDTO(Van van) {
 		VanOutputDTO outputDTO = new VanOutputDTO();
 		outputDTO.setId(van.getId());

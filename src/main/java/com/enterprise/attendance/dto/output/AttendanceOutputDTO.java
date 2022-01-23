@@ -24,6 +24,9 @@ public class AttendanceOutputDTO {
 
 	private UserDto userOutupDTO;
 
+	private VendorOutputDTO vendorOutputDTO;
+
+	private String comment;
 
 	public Integer getId() {
 		return id;
@@ -105,4 +108,19 @@ public class AttendanceOutputDTO {
 		this.userOutupDTO = userOutupDTO;
 	}
 
+	public VendorOutputDTO getVendorOutputDTO() {
+		return vendorOutputDTO;
+	}
+
+	public void setVendorOutputDTO(VendorOutputDTO vendorOutputDTO) {
+		this.vendorOutputDTO = vendorOutputDTO;
+	}
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 }
