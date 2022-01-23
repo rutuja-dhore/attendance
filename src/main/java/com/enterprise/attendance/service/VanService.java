@@ -4,6 +4,7 @@ import java.util.List;
 
 import com.enterprise.attendance.dto.input.VanInputDTO;
 import com.enterprise.attendance.dto.output.VanOutputDTO;
+import com.enterprise.attendance.dto.output.VendorOutputDTO;
 
 public interface VanService {
 

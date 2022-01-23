@@ -19,7 +19,7 @@ import com.enterprise.attendance.dto.output.AttendanceOutputDTO;
 import com.enterprise.attendance.service.AttendanceService;
 
 @RestController
-@RequestMapping(value = "/attendances")
+@RequestMapping(value = "/z")
 public class AttendanceController {
 
 	@Autowired

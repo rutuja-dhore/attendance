@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
+import com.enterprise.attendance.dto.output.VanOutputDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.enterprise.attendance.dao.VanDAO;
 import com.enterprise.attendance.dto.input.VanInputDTO;
-import com.enterprise.attendance.dto.output.VanOutputDTO;
 import com.enterprise.attendance.exception.ErrorMessages;
 import com.enterprise.attendance.exception.NullException;
 import com.enterprise.attendance.model.Van;

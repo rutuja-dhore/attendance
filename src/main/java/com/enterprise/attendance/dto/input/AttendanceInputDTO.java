@@ -4,6 +4,7 @@ import java.util.Date;
 
 public class AttendanceInputDTO {
 
+
 	private String vanNumber;
 
 	private String shiftName;

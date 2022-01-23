@@ -2,6 +2,7 @@ package com.enterprise.attendance.controllers;
 
 import java.util.List;
 
+import com.enterprise.attendance.dto.output.VanOutputDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -14,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.enterprise.attendance.dto.input.VanInputDTO;
-import com.enterprise.attendance.dto.output.VanOutputDTO;
+import com.enterprise.attendance.dto.output.VendorOutputDTO;
 import com.enterprise.attendance.service.VanService;
 
 @RestController
