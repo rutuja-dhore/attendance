@@ -12,6 +12,8 @@ import com.enterprise.attendance.service.VendorService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -36,6 +38,18 @@ public class VendorServiceImpl implements VendorService {
 		}
 		return createResponseDTO(vendor.get());
 	}
+
+	@Override
+	public List<VendorOutputDTO> retrieveAll() {
+		List<Vendor> vendors = vendorDAO.findAll();
+
+		List<VendorOutputDTO> responseDTOs = new ArrayList<>();
+		for (Vendor vendor : vendors) {
+			responseDTOs.add(createResponseDTO(vendor));
+		}
+		return responseDTOs;
+	}
+
 	private VendorOutputDTO createResponseDTO(Vendor vendor) {
 		VendorOutputDTO outputDTO = new VendorOutputDTO();
 		outputDTO.setId(vendor.getId());
