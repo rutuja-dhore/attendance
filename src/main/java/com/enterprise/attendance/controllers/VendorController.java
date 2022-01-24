@@ -22,7 +22,7 @@ public class VendorController {
 	}
 
 	@GetMapping
-	public List<VanOutputDTO> retrieveAll() {
+	public List<VendorOutputDTO> retrieveAll() {
 		return vendorService.retrieveAll();
 	}
 
