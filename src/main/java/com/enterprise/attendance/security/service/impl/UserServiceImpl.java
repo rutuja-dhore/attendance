@@ -35,7 +35,7 @@ public class UserServiceImpl implements UserService {
 	private PrivilegeRepository privilegeRepository;
 
 	@Autowired
-	private VendorService vendorService;
+	private VendorDAO vendorDAO;
 
 	@Override
 	public UserDto createAdmin(UserInputDTO userInputDTO) {
@@ -85,17 +85,12 @@ public class UserServiceImpl implements UserService {
 		user.setEnabled(true);
 		user.setMobileNumber(userInputDTO.getMobileNumber());
 
-		List<Integer> vendorIds = userInputDTO.getVendors();
-		if(!vendorIds.isEmpty()) {
+		List<String> vendorNames = userInputDTO.getVendors();
+		if(!vendorNames.isEmpty()) {
 			List<Vendor> vendors = new ArrayList<>();
 
-			for (Integer vendorId : vendorIds) {
-				VendorOutputDTO vendorOutputDTO= vendorService.retrieveById(vendorId);
-
-				Vendor vendor = new Vendor();
-				vendor.setName(vendorOutputDTO.getName());
-
-				vendors.add(vendor);
+			for (String vendorName : vendorNames) {
+				vendors.add(vendorDAO.findByName(vendorName));
 		}
 		user.setVendorUsers(vendors);
 		}

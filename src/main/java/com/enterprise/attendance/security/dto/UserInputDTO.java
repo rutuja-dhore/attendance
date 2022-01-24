@@ -18,7 +18,7 @@ public class UserInputDTO {
 
 	private String mobileNumber;
 
-	private List<Integer> vendors;
+	private List<String> vendors;
 
 	public String getFirstName() {
 		return firstName;
@@ -52,11 +52,11 @@ public class UserInputDTO {
 		this.mobileNumber = mobileNumber;
 	}
 
-	public List<Integer> getVendors() {
+	public List<String> getVendors() {
 		return vendors;
 	}
 
-	public void setVendors(List<Integer> vendors) {
+	public void setVendors(List<String> vendors) {
 		this.vendors = vendors;
 	}
 }
