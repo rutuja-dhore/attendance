@@ -4,19 +4,10 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 import com.enterprise.attendance.model.Attendance;
+import com.enterprise.attendance.model.Van;
 import com.enterprise.attendance.model.Vendor;
 
 @Entity
@@ -38,7 +29,7 @@ public class User {
 	private boolean enabled;
 	
 	
-	@ManyToMany(fetch = FetchType.EAGER)
+	@ManyToMany
 	@JoinTable(name = "users_roles", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id"))
 	private Collection<Role> roles = new ArrayList<>();
 
@@ -49,6 +40,9 @@ public class User {
 	@JoinTable(name = "vendor_users", joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"), inverseJoinColumns = @JoinColumn(name = "vendor_id", referencedColumnName = "id"))
 	private Collection<Vendor> vendorUsers = new ArrayList<>();
 
+	@OneToOne(cascade = CascadeType.ALL)
+	@JoinColumn(name = "van_id", referencedColumnName = "id")
+	private Van van;
 	public User() {
 	}
 
@@ -122,5 +116,13 @@ public class User {
 
 	public void setVendorUsers(Collection<Vendor> vendorUsers) {
 		this.vendorUsers = vendorUsers;
+	}
+
+	public Van getVan() {
+		return van;
+	}
+
+	public void setVan(Van van) {
+		this.van = van;
 	}
 }

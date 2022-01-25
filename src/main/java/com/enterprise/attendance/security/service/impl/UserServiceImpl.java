@@ -2,8 +2,11 @@ package com.enterprise.attendance.security.service.impl;
 
 import java.util.*;
 
+import com.enterprise.attendance.dao.VanDAO;
 import com.enterprise.attendance.dao.VendorDAO;
+import com.enterprise.attendance.dto.output.VanOutputDTO;
 import com.enterprise.attendance.dto.output.VendorOutputDTO;
+import com.enterprise.attendance.model.Van;
 import com.enterprise.attendance.model.Vendor;
 import com.enterprise.attendance.service.VendorService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,6 +40,8 @@ public class UserServiceImpl implements UserService {
 	@Autowired
 	private VendorDAO vendorDAO;
 
+	@Autowired
+	private VanDAO vanDAO;
 	@Override
 	public UserDto createAdmin(UserInputDTO userInputDTO) {
 		Privilege readPrivilege = createPrivilegeIfNotFound("READ_PRIVILEGE");
@@ -69,6 +74,14 @@ public class UserServiceImpl implements UserService {
 		}
 		
 		outputDTO.setRole(roleNames);
+
+		Van van = user.getVan();
+
+		VanOutputDTO vanOutputDTO = new VanOutputDTO();
+		vanOutputDTO.setNumber(van.getNumber());
+		vanOutputDTO.setId(van.getId());
+
+		outputDTO.setVan(vanOutputDTO);
 		return outputDTO;
 	}
 
@@ -85,6 +98,8 @@ public class UserServiceImpl implements UserService {
 		user.setEnabled(true);
 		user.setMobileNumber(userInputDTO.getMobileNumber());
 
+		Van van = vanDAO.findByNumber(userInputDTO.getVanNumber());
+		user.setVan(van);
 		List<String> vendorNames = userInputDTO.getVendors();
 		if(!vendorNames.isEmpty()) {
 			List<Vendor> vendors = new ArrayList<>();

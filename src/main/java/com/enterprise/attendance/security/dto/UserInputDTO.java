@@ -20,6 +20,16 @@ public class UserInputDTO {
 
 	private List<String> vendors;
 
+	private String vanNumber;
+
+	public String getVanNumber() {
+		return vanNumber;
+	}
+
+	public void setVanNumber(String vanNumber) {
+		this.vanNumber = vanNumber;
+	}
+
 	public String getFirstName() {
 		return firstName;
 	}

@@ -1,5 +1,7 @@
 package com.enterprise.attendance.security.dto;
 
+import com.enterprise.attendance.dto.output.VanOutputDTO;
+
 import java.util.List;
 
 //import javax.validation.constraints.NotNull;
@@ -23,6 +25,8 @@ public class UserDto {
 	private boolean enabled;
 
 	private List<String> role;
+
+	private VanOutputDTO van;
 
 	public Long getId() {
 		return id;
@@ -80,4 +84,11 @@ public class UserDto {
 		this.role = role;
 	}
 
+	public VanOutputDTO getVan() {
+		return van;
+	}
+
+	public void setVan(VanOutputDTO van) {
+		this.van = van;
+	}
 }

@@ -1,14 +1,10 @@
 package com.enterprise.attendance.model;
 
+import com.enterprise.attendance.security.model.User;
+
 import java.util.List;
 
-import javax.persistence.CascadeType;
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
-import javax.persistence.OneToMany;
+import javax.persistence.*;
 
 @Entity
 public class Van {
@@ -23,6 +19,9 @@ public class Van {
 	@OneToMany(mappedBy = "van", cascade=CascadeType.ALL)
 	private List<Attendance> attendance;
 
+	@OneToOne(mappedBy = "van")
+	private User user;
+
 	public Integer getId() {
 		return id;
 	}
@@ -35,4 +34,19 @@ public class Van {
 		this.number = number;
 	}
 
+	public List<Attendance> getAttendance() {
+		return attendance;
+	}
+
+	public void setAttendance(List<Attendance> attendance) {
+		this.attendance = attendance;
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 }
