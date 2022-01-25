@@ -75,13 +75,6 @@ public class UserServiceImpl implements UserService {
 		
 		outputDTO.setRole(roleNames);
 
-		Van van = user.getVan();
-
-		VanOutputDTO vanOutputDTO = new VanOutputDTO();
-		vanOutputDTO.setNumber(van.getNumber());
-		vanOutputDTO.setId(van.getId());
-
-		outputDTO.setVan(vanOutputDTO);
 		return outputDTO;
 	}
 
@@ -110,7 +103,17 @@ public class UserServiceImpl implements UserService {
 		user.setVendorUsers(vendors);
 		}
 		user = userRepository.save(user);
-		return createResponse(user);
+
+		UserDto userDto = createResponse(user);
+
+		if(van != null) {
+		VanOutputDTO vanOutputDTO = new VanOutputDTO();
+		vanOutputDTO.setNumber(van.getNumber());
+		vanOutputDTO.setId(van.getId());
+
+		userDto.setVan(vanOutputDTO);
+		}
+		return userDto;
 	}
 
 	@Override
