@@ -25,8 +25,8 @@ public class Shift {
 
 	private Time endTime;
 
-	@OneToMany(mappedBy = "shift", cascade=CascadeType.ALL)
-	private List<Attendance> attendance;
+	//@OneToMany(mappedBy = "shift", cascade=CascadeType.ALL)
+	//private List<Attendance> attendance;
 	
 	public Integer getId() {
 		return id;

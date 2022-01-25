@@ -10,8 +10,6 @@ public class AttendanceOutputDTO {
 
 	private VanOutputDTO vanOutputDTO;
 
-	private ShiftOutputDTO shiftOutputDTO;
-
 	private String tableNo;
 
 	private double startKm;
@@ -42,14 +40,6 @@ public class AttendanceOutputDTO {
 
 	public void setVanOutputDTO(VanOutputDTO vanOutputDTO) {
 		this.vanOutputDTO = vanOutputDTO;
-	}
-
-	public ShiftOutputDTO getShiftOutputDTO() {
-		return shiftOutputDTO;
-	}
-
-	public void setShiftOutputDTO(ShiftOutputDTO shiftOutputDTO) {
-		this.shiftOutputDTO = shiftOutputDTO;
 	}
 
 	public String getTableNo() {

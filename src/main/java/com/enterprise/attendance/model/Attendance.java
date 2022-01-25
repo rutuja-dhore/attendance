@@ -17,9 +17,9 @@ public class Attendance {
 	@JoinColumn(name = "van_id", nullable = false)
 	private Van van;
 
-	@ManyToOne
-	@JoinColumn(name = "shift_id", nullable = false)
-	private Shift shift;
+	//@ManyToOne
+	//@JoinColumn(name = "shift_id", nullable = false)
+	//private Shift shift;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
@@ -53,14 +53,6 @@ public class Attendance {
 
 	public void setVan(Van van) {
 		this.van = van;
-	}
-
-	public Shift getShift() {
-		return shift;
-	}
-
-	public void setShift(Shift shift) {
-		this.shift = shift;
 	}
 
 	public String getTableNo() {

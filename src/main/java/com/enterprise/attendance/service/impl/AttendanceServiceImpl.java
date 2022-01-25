@@ -56,8 +56,8 @@ public class AttendanceServiceImpl implements AttendanceService {
 		attendance.setTableNo(attendanceInputDTO.getTableNo());
 		Van van = vanDAO.findByNumber(attendanceInputDTO.getVanNumber());
 		attendance.setVan(van);
-		Shift shift = shiftDAO.findByName(attendanceInputDTO.getShiftName());
-		attendance.setShift(shift);
+//		Shift shift = shiftDAO.findByName(attendanceInputDTO.getShiftName());
+//		attendance.setShift(shift);
 		attendance.setDisel(attendanceInputDTO.getDisel());
 		User user = userDAO.findByMobileNumber(attendanceInputDTO.getMobileNumber());
 		attendance.setUser(user);
@@ -133,8 +133,8 @@ public class AttendanceServiceImpl implements AttendanceService {
 		attendancePresent.setTotalKm(attendanceInputDTO.getEndKm() - attendanceInputDTO.getStartKm());
 		Van van = vanDAO.findByNumber(attendanceInputDTO.getVanNumber());
 		attendancePresent.setVan(van);
-		Shift shift = shiftDAO.findByName(attendanceInputDTO.getShiftName());
-		attendancePresent.setShift(shift);
+		//Shift shift = shiftDAO.findByName(attendanceInputDTO.getShiftName());
+		//attendancePresent.setShift(shift);
 		attendancePresent.setDisel(attendanceInputDTO.getDisel());
 		User user = userDAO.findByMobileNumber(attendanceInputDTO.getMobileNumber());
 		attendancePresent.setUser(user);
@@ -148,7 +148,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 		outputDTO.setEndKm(attendance.getEndKm());
 		outputDTO.setStartKm(attendance.getStartKm());
 		outputDTO.setTableNo(attendance.getTableNo());
-		outputDTO.setShiftOutputDTO(createShiftResponseDTO(attendance.getShift()));
+		//outputDTO.setShiftOutputDTO(createShiftResponseDTO(attendance.getShift()));
 		outputDTO.setVanOutputDTO(createVanResponseDTO(attendance.getVan()));
 		outputDTO.setDisel(attendance.getDisel());
 		outputDTO.setLogDate(attendance.getLogDate());

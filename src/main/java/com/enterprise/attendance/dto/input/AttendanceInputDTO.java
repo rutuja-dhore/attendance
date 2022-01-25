@@ -7,8 +7,6 @@ public class AttendanceInputDTO {
 
 	private String vanNumber;
 
-	private String shiftName;
-
 	private String tableNo;
 
 	private double startKm;
@@ -31,14 +29,6 @@ public class AttendanceInputDTO {
 
 	public void setVanNumber(String vanNumber) {
 		this.vanNumber = vanNumber;
-	}
-
-	public String getShiftName() {
-		return shiftName;
-	}
-
-	public void setShiftName(String shiftName) {
-		this.shiftName = shiftName;
 	}
 
 	public String getTableNo() {
