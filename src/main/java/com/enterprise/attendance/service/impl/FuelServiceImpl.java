@@ -8,6 +8,7 @@ import com.enterprise.attendance.dto.input.ShiftInputDTO;
 import com.enterprise.attendance.dto.output.AttendanceOutputDTO;
 import com.enterprise.attendance.dto.output.FuelOutputDTO;
 import com.enterprise.attendance.dto.output.ShiftOutputDTO;
+import com.enterprise.attendance.dto.output.VanOutputDTO;
 import com.enterprise.attendance.exception.ErrorMessages;
 import com.enterprise.attendance.exception.NullException;
 import com.enterprise.attendance.model.Attendance;
@@ -41,6 +42,14 @@ public class FuelServiceImpl implements FuelService {
 		outputDTO.setAmount(fuel.getAmount());
 		outputDTO.setType(fuel.getType());
 		outputDTO.setLogDate(fuel.getLogDate());
+
+		Van van = fuel.getVan();
+		if(van != null) {
+			VanOutputDTO vanOutputDTO = new VanOutputDTO();
+			vanOutputDTO.setNumber(van.getNumber());
+			vanOutputDTO.setId(van.getId());
+			outputDTO.setVanOutputDTO(vanOutputDTO);
+		}
 		return outputDTO;
 	}
 
