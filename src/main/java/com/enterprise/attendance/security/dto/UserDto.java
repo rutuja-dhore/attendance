@@ -1,7 +1,11 @@
 package com.enterprise.attendance.security.dto;
 
 import com.enterprise.attendance.dto.output.VanOutputDTO;
+import com.enterprise.attendance.dto.output.VendorOutputDTO;
+import com.enterprise.attendance.model.Vendor;
 
+import java.util.ArrayList;
+import java.util.Collection;
 import java.util.List;
 
 //import javax.validation.constraints.NotNull;
@@ -27,6 +31,8 @@ public class UserDto {
 	private List<String> role;
 
 	private VanOutputDTO van;
+
+	private Collection<VendorOutputDTO> vendors;
 
 	public Long getId() {
 		return id;
@@ -90,5 +96,13 @@ public class UserDto {
 
 	public void setVan(VanOutputDTO van) {
 		this.van = van;
+	}
+
+	public Collection<VendorOutputDTO> getVendors() {
+		return vendors;
+	}
+
+	public void setVendors(Collection<VendorOutputDTO> vendors) {
+		this.vendors = vendors;
 	}
 }

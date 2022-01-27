@@ -59,7 +59,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 //		Shift shift = shiftDAO.findByName(attendanceInputDTO.getShiftName());
 //		attendance.setShift(shift);
 		attendance.setDisel(attendanceInputDTO.getDisel());
-		User user = userDAO.findByMobileNumber(attendanceInputDTO.getMobileNumber());
+		User user = userDAO.findDistinctByMobileNumber(attendanceInputDTO.getMobileNumber());
 		attendance.setUser(user);
 		attendance.setComment(attendance.getComment());
 		Vendor vendor = vendorDAO.findByName(attendanceInputDTO.getVendorName());
@@ -108,7 +108,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 	@Override
 	public List<AttendanceOutputDTO> retrieveByMobileNumber(String mobileNumber) {
 
-		User user = userDAO.findByMobileNumber(mobileNumber);
+		User user = userDAO.findDistinctByMobileNumber(mobileNumber);
 
 		List<Attendance> attendances = attendanceDAO.findByUserId(user.getId());
 
@@ -136,7 +136,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 		//Shift shift = shiftDAO.findByName(attendanceInputDTO.getShiftName());
 		//attendancePresent.setShift(shift);
 		attendancePresent.setDisel(attendanceInputDTO.getDisel());
-		User user = userDAO.findByMobileNumber(attendanceInputDTO.getMobileNumber());
+		User user = userDAO.findDistinctByMobileNumber(attendanceInputDTO.getMobileNumber());
 		attendancePresent.setUser(user);
 		attendancePresent = attendanceDAO.save(attendancePresent);
 		return createResponseDTO(attendancePresent);

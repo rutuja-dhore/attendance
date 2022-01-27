@@ -56,6 +56,7 @@ public class UserServiceImpl implements UserService {
 		user.setMobileNumber(userInputDTO.getMobileNumber());
 		user.setRoles(Collections.singletonList(adminRole));
 		user.setEnabled(true);
+		setVendorsToUser(userInputDTO, user);
 		user = userRepository.save(user);
 		return createResponse(user);
 	}
@@ -82,6 +83,17 @@ public class UserServiceImpl implements UserService {
 			vanOutputDTO.setId(van.getId());
 			outputDTO.setVan(vanOutputDTO);
 		}
+
+		Collection<Vendor> vendors = user.getVendorUsers();
+		Collection<VendorOutputDTO> vendorOutputDTOS = new ArrayList<>();
+		for (Vendor vendor : vendors) {
+			VendorOutputDTO vendorOutputDTO = new VendorOutputDTO();
+			vendorOutputDTO.setName(vendor.getName());
+			vendorOutputDTO.setId(vendor.getId());
+			vendorOutputDTOS.add(vendorOutputDTO);
+		}
+		outputDTO.setVendors(vendorOutputDTOS);
+
 		return outputDTO;
 	}
 
@@ -100,6 +112,13 @@ public class UserServiceImpl implements UserService {
 
 		Van van = vanDAO.findByNumber(userInputDTO.getVanNumber());
 		user.setVan(van);
+		setVendorsToUser(userInputDTO, user);
+		user = userRepository.save(user);
+
+		return createResponse(user);
+	}
+
+	private void setVendorsToUser(UserInputDTO userInputDTO, User user) {
 		List<String> vendorNames = userInputDTO.getVendors();
 		if(!vendorNames.isEmpty()) {
 			List<Vendor> vendors = new ArrayList<>();
@@ -109,9 +128,6 @@ public class UserServiceImpl implements UserService {
 		}
 		user.setVendorUsers(vendors);
 		}
-		user = userRepository.save(user);
-
-		return createResponse(user);
 	}
 
 	@Override
@@ -129,7 +145,7 @@ public class UserServiceImpl implements UserService {
 
 	@Override
 	public UserDto retrieveByMobileNumber(String mobileNumber) {
-		User user = userRepository.findByMobileNumber(mobileNumber);
+		User user = userRepository.findDistinctByMobileNumber(mobileNumber);
 		if (user == null) {
 			throw new NullException(ErrorMessages.NO_RECORD_FOUND.getErrorMessage());
 		}
