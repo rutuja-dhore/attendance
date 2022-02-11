@@ -1,10 +1,11 @@
 package com.enterprise.attendance.dto.output;
 
+import java.io.Serializable;
 import java.util.Date;
 
 import com.enterprise.attendance.security.dto.UserDto;
 
-public class AttendanceOutputDTO {
+public class AttendanceOutputDTO implements Serializable {
 
 	private Integer id;
 

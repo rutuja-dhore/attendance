@@ -4,6 +4,7 @@ import com.enterprise.attendance.dto.output.VanOutputDTO;
 import com.enterprise.attendance.dto.output.VendorOutputDTO;
 import com.enterprise.attendance.model.Vendor;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
 //import javax.validation.constraints.NotNull;
 //import javax.validation.constraints.Size;
 
-public class UserDto {
+public class UserDto implements Serializable {
 
 	private Long id;
 

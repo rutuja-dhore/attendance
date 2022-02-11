@@ -1,6 +1,8 @@
 package com.enterprise.attendance.dto.output;
 
-public class VendorOutputDTO {
+import java.io.Serializable;
+
+public class VendorOutputDTO implements Serializable {
 
 	private Integer id;
 
