@@ -188,6 +188,10 @@ public class UserServiceImpl implements UserService {
 		userPresent.setPassword(userInputDTO.getPassword());
 		userPresent.setMobileNumber(userInputDTO.getMobileNumber());
 		userPresent.setEnabled(true);
+
+		Van van = vanDAO.findByNumber(userInputDTO.getVanNumber());
+		userPresent.setVan(van);
+
 		userPresent = userRepository.save(userPresent);
 		return createResponse(userPresent);
 	}

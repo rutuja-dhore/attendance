@@ -18,9 +18,9 @@ target/
 *.iws
 *.iml
 *.ipr
-application.log
-application.log.2022-01-24.0.gz
-
+*.gz
+*.log
+*.xls
 ### NetBeans ###
 /nbproject/private/
 /nbbuild/
