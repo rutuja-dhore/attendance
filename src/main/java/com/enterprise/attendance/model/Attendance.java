@@ -17,9 +17,9 @@ public class Attendance {
 	@JoinColumn(name = "van_id", nullable = false)
 	private Van van;
 
-	//@ManyToOne
-	//@JoinColumn(name = "shift_id", nullable = false)
-	//private Shift shift;
+	@ManyToOne
+	@JoinColumn(name = "vendor_id", nullable = false)
+	private Vendor vendor;
 
 	@ManyToOne
 	@JoinColumn(name = "user_id", nullable = false)
@@ -38,10 +38,6 @@ public class Attendance {
 	private Double disel;
 
 	private String comment;
-
-	@OneToOne(cascade = CascadeType.ALL)
-	@JoinColumn(name = "vendor_id", referencedColumnName = "id")
-	private Vendor vendor;
 
 	public Integer getId() {
 		return id;
