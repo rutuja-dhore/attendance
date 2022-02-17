@@ -86,11 +86,15 @@ public class UserServiceImpl implements UserService {
 
 		Collection<Vendor> vendors = user.getVendorUsers();
 		Collection<VendorOutputDTO> vendorOutputDTOS = new ArrayList<>();
+		if (!vendors.isEmpty()) {
 		for (Vendor vendor : vendors) {
+			if(vendor != null){
 			VendorOutputDTO vendorOutputDTO = new VendorOutputDTO();
 			vendorOutputDTO.setName(vendor.getName());
 			vendorOutputDTO.setId(vendor.getId());
 			vendorOutputDTOS.add(vendorOutputDTO);
+			}
+		}
 		}
 		outputDTO.setVendors(vendorOutputDTOS);
 
@@ -192,6 +196,7 @@ public class UserServiceImpl implements UserService {
 		Van van = vanDAO.findByNumber(userInputDTO.getVanNumber());
 		userPresent.setVan(van);
 
+		setVendorsToUser(userInputDTO, userPresent);
 		userPresent = userRepository.save(userPresent);
 		return createResponse(userPresent);
 	}
