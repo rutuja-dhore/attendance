@@ -40,8 +40,8 @@ public class AttendanceController {
 
 	@GetMapping
 	public List<AttendanceOutputDTO> retrieveAll(
-			@RequestParam(value = "fromDate", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date fromDate,
-			@RequestParam(value = "toDate", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date toDate,
+			@RequestParam(value = "fromDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") Date fromDate,
+			@RequestParam(value = "toDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") Date toDate,
 			@RequestParam(value = "mobileNumber", required = false) String mobileNumber) {
 		return attendanceService.retrieveAll(fromDate, toDate, mobileNumber);
 	}
@@ -129,8 +129,8 @@ cellStyle.setFillBackgroundColor((short) 2);
 	}
 
 	@GetMapping(value="/downloadTemplate")
-	public ResponseEntity<ByteArrayResource> downloadTemplate(@RequestParam(value = "fromDate", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date fromDate,
-															  @RequestParam(value = "toDate", required = false) @DateTimeFormat(pattern = "yyyy-MM-dd") Date toDate,
+	public ResponseEntity<ByteArrayResource> downloadTemplate(@RequestParam(value = "fromDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") Date fromDate,
+															  @RequestParam(value = "toDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") Date toDate,
 															  @RequestParam(value = "mobileNumber", required = false) String mobileNumber) throws Exception {
 		try {
 			List<AttendanceOutputDTO> data = attendanceService.retrieveAll(fromDate, toDate, mobileNumber);
