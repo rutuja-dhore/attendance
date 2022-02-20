@@ -28,4 +28,11 @@ public class FuelController {
 		return fuelService.retrieveByVanNumber(vanNumber);
 	}
 
+	@GetMapping
+	public List<FuelOutputDTO> retrieveAll(
+			@RequestParam(value = "fromDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") Date fromDate,
+			@RequestParam(value = "toDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") Date toDate,
+			@RequestParam(value = "vanNumber", required = false) String vanNumber) {
+		return fuelService.retrieveAll(fromDate, toDate, vanNumber);
+	}
 }

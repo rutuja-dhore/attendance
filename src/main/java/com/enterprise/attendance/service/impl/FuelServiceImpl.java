@@ -78,4 +78,33 @@ public class FuelServiceImpl implements FuelService {
 		}
 		return responseDTOs;
 	}
+
+	@Override
+	public List<FuelOutputDTO> retrieveAll(Date fromDate, Date toDate, String vanNumber) {
+
+		List<Fuel> fuels = null;
+
+		if (fromDate != null && toDate == null) {
+			fuels = fuelDAO.findByLogDate(fromDate);
+		} else if (fromDate != null && toDate != null) {
+			fuels = fuelDAO.findByLogDateBetween(fromDate, toDate);
+		}
+
+		if (fromDate != null && toDate != null && vanNumber != null) {
+			fuels = fuelDAO.findByVanNumberAndLogDateBetween(vanNumber, fromDate, toDate);
+		} else if (fromDate != null && vanNumber != null) {
+			fuels = fuelDAO.findByVanNumberAndLogDate(vanNumber, fromDate);
+		} else if (vanNumber != null) {
+			fuels = fuelDAO.findByVanNumber(vanNumber);
+		} else if (fromDate == null && toDate == null && vanNumber == null) {
+			fuels = fuelDAO.findAll();
+		}
+
+		List<FuelOutputDTO> responseDTOs = new ArrayList<>();
+		for (Fuel fuel : fuels) {
+			responseDTOs.add(createResponseDTO(fuel));
+		}
+		return responseDTOs;
+	}
+
 }
