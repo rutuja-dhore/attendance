@@ -151,7 +151,7 @@ public class AttendanceServiceImpl implements AttendanceService {
 		//outputDTO.setShiftOutputDTO(createShiftResponseDTO(attendance.getShift()));
 		outputDTO.setVanOutputDTO(createVanResponseDTO(attendance.getVan()));
 		outputDTO.setDisel(attendance.getDisel());
-		outputDTO.setLogDate(attendance.getLogDate());
+		outputDTO.setLogDate(attendance.getLogDate().toString());
 		outputDTO.setUserOutupDTO(createUserResponseDTO(attendance.getUser()));
 		outputDTO.setTotalKm(attendance.getTotalKm());
 		outputDTO.setComment(attendance.getComment());

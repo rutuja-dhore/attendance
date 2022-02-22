@@ -19,7 +19,7 @@ public class AttendanceOutputDTO implements Serializable {
 
 	private double totalKm;
 	private double disel;
-	private Date logDate;
+	private String logDate;
 
 	private UserDto userOutupDTO;
 
@@ -83,11 +83,11 @@ public class AttendanceOutputDTO implements Serializable {
 		this.disel = disel;
 	}
 
-	public Date getLogDate() {
+	public String getLogDate() {
 		return logDate;
 	}
 
-	public void setLogDate(Date logDate) {
+	public void setLogDate(String logDate) {
 		this.logDate = logDate;
 	}
 
