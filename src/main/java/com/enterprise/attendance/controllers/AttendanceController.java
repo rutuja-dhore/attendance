@@ -1,26 +1,20 @@
 package com.enterprise.attendance.controllers;
 
-import java.io.ByteArrayOutputStream;
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.ObjectOutputStream;
+import java.io.*;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.enterprise.attendance.common.Helper;
+import com.enterprise.attendance.config.EmailClient;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
 import org.apache.poi.ss.usermodel.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
+import org.springframework.core.io.InputStreamResource;
 import org.springframework.format.annotation.DateTimeFormat;
 import org.springframework.http.*;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import com.enterprise.attendance.dto.input.AttendanceInputDTO;
 import com.enterprise.attendance.dto.output.AttendanceOutputDTO;
@@ -127,6 +121,42 @@ cellStyle.setFillBackgroundColor((short) 2);
 		cellComment.setCellValue("COMMENT");
 
 	}
+
+	@GetMapping(value="/export")
+	public boolean exportByMail(@RequestParam(value = "fromDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") Date fromDate,
+															  @RequestParam(value = "toDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") Date toDate,
+															  @RequestParam(value = "mobileNumber", required = false) String mobileNumber) throws Exception {
+		try {
+			List<AttendanceOutputDTO> data = attendanceService.retrieveAll(fromDate, toDate, mobileNumber);
+			if(!data.isEmpty()){
+
+				if(fromDate == null) {
+					fromDate = Helper.getFirstDateOfMonth(new Date());
+				}
+				if(toDate == null) {
+					toDate = new Date();
+				}
+
+				String excelFilePath = "Report-" + fromDate+"-"+ toDate +".xls";
+			Workbook workbook = writeExcel(data, excelFilePath);
+			try  {
+				EmailClient.sendAsHtml("rutuja.dhore@gmail.com",
+						"Trip Report for " +excelFilePath,
+						"<h2>Java Mail</h2><p>hi there!</p>", excelFilePath);
+			}
+			catch (Exception e) {
+				e.printStackTrace();
+			}
+
+			}
+			return false;
+		} catch (Exception e) {
+			e.printStackTrace();
+
+		}
+		return false;
+	}
+
 
 	@GetMapping(value="/downloadTemplate")
 	public ResponseEntity<ByteArrayResource> downloadTemplate(@RequestParam(value = "fromDate", required = false) @DateTimeFormat(pattern = "dd-MM-yyyy") Date fromDate,
