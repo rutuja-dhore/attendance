@@ -22,7 +22,7 @@ import java.util.Properties;
 
 public class EmailClient {
     private static final String senderEmail = "rutuja.dhore@gmail.com";//change with your sender email
-    private static final String senderPassword = "rutujaDhore@1515";//change with your sender password
+    private static final String senderPassword = "";//change with your sender password
 
     public static void sendAsHtml(String to, String title, String html,String filename) throws MessagingException, FileNotFoundException, IOException {
         System.out.println("Sending email to " + to);
