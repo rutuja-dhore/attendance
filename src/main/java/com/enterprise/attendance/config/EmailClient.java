@@ -1,5 +1,4 @@
 package com.enterprise.attendance.config;
-
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -35,7 +34,7 @@ public class EmailClient {
 
         //3) create MimeBodyPart object and set your message text
         BodyPart messageBodyPart1 = new MimeBodyPart();
-        messageBodyPart1.setText("This is message body");
+        messageBodyPart1.setText("PFA report.");
 
         //4) create new MimeBodyPart object and set DataHandler object to this object
         MimeBodyPart messageBodyPart2 = new MimeBodyPart();

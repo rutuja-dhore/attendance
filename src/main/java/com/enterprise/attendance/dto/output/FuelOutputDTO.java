@@ -11,12 +11,13 @@ public class FuelOutputDTO {
 
 	private VanOutputDTO vanOutputDTO;
 
-	private Date logDate;
+	private String logDate;
 
 	private double amount;
 
 	private String type;
 
+	private Integer dayOfLogDate;
 	public Integer getId() {
 		return id;
 	}
@@ -33,11 +34,11 @@ public class FuelOutputDTO {
 		this.vanOutputDTO = vanOutputDTO;
 	}
 
-	public Date getLogDate() {
+	public String getLogDate() {
 		return logDate;
 	}
 
-	public void setLogDate(Date logDate) {
+	public void setLogDate(String logDate) {
 		this.logDate = logDate;
 	}
 
@@ -55,5 +56,13 @@ public class FuelOutputDTO {
 
 	public void setType(String type) {
 		this.type = type;
+	}
+
+	public Integer getDayOfLogDate() {
+		return dayOfLogDate;
+	}
+
+	public void setDayOfLogDate(Integer dayOfLogDate) {
+		this.dayOfLogDate = dayOfLogDate;
 	}
 }

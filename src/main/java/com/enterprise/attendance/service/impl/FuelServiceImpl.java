@@ -41,8 +41,8 @@ public class FuelServiceImpl implements FuelService {
 		outputDTO.setId(fuel.getId());
 		outputDTO.setAmount(fuel.getAmount());
 		outputDTO.setType(fuel.getType());
-		outputDTO.setLogDate(fuel.getLogDate());
-
+		outputDTO.setLogDate(fuel.getLogDate().toString());
+		outputDTO.setDayOfLogDate(fuel.getLogDate().getDate());
 		Van van = fuel.getVan();
 		if(van != null) {
 			VanOutputDTO vanOutputDTO = new VanOutputDTO();
